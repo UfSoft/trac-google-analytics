@@ -1,0 +1,80 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="admin.html" />
+
+<head>
+  <title>Google Analytics Options</title>
+</head>
+<body>
+  <form class="mod" id="modads" method="post">
+    <fieldset>
+      <legend>Basic Options</legend>
+      <label for="uid">UID:</label>
+      <input type="text" name="uid" value="${ga.uid.value.upper()}"/>
+      <p class="help">Enter your Google Analytics' UID in this box.<br/>
+        The UID is needed for Google Analytics to log your website stats.<br/>
+        Your UID can be found by looking in the JavaScript Google Analytics
+        gives you to put on your page.<br/> Look for your UID in between:
+        <strong><tt>var pageTracker = _gat._getTracker("UA-111111-11");</tt></strong>
+        in the javascript.<br/>
+        In this example you would put <strong>UA-11111-1</strong> in the
+        UID box.</p><br/>
+
+      <label for="admin_logging">Admin Logging:</label>
+      <input type="checkbox" name="admin_logging" value="yes" checked="${
+        ga.admin_logging.value and 'checked' or None}"/>
+      <p class="help">Disabling this option will prevent all logged in
+        <tt><strong>TRAC_ADMIN</strong></tt>'s from showing up on your Google
+        Analytics reports.</p><br/>
+    </fieldset>
+
+    <fieldset>
+      <legend>Advanced Options</legend>
+      <label for="outbound_link_tracking">Outbound Link Tracking:</label>
+      <input type="checkbox" value="yes" name="outbound_link_tracking" checked="${
+        ga.outbound_link_tracking.value and 'checked' or None}"/>
+      <p class="help">Disabling this option will turn off the tracking of
+        outbound links.<br/>It's recommended not to disable this option unless
+        you're a privacy advocate (now why would you be using Google Analytics
+        in the first place?) or it's causing some kind of weird issue.</p><br/>
+
+      <label for="google_external_path">Google External Path:</label>
+      <input type="text" name="google_external_path"
+        value="${ga.google_external_path.value}"/>
+      <p class="help">This will be the path shown on Google Analytics
+        regarding external links. Consider the following link:<br/><strong><tt>
+        &lt;a href="http://trac.edgewall.org/">Trac&lt;/a&gt;</tt></strong><br/>
+        The above link will be shown as <strong><tt>${
+        ga.google_external_path.value}}trac.edgewall.org/</tt></strong>.<br/>
+        This way you will be able to track outgoing links.<br/>
+        <em>Outbound link tracking must be enabled for external links to be
+        tracked.</em></p><br/>
+
+      <label for="extensions">Download Extensions To Trac:</label>
+      <input type="text" name="extensions" size="50" value="${
+        ga.extensions.value }"/>
+      <p class="help">Enter any extensions of files you would like to be
+        tracked as a download.<br/>For example to track all MP3s and PDFs enter
+        <strong>mp3,pdf</strong>.<br/><em>Outbound link tracking must be enabled
+        for downloads to be tracked.</em></p><br/>
+
+      <label for="tracking_domain_name">Tracking Domain Name:</label>
+      <input type="text" name="tracking_domain_name" size="50" value="${
+        ga.tracking_domain_name.value }"/>
+      <p class="help">If you're tracking multiple subdomains with the same
+      Google Analytics profile, like what's talked about
+      <a href="https://www.google.com/support/googleanalytics/bin/answer.py?answer=55524">here</a>,
+      enter your main domain here. For more info, please visit the previous
+      link.</p><br/>
+    </fieldset>
+
+    <div class="buttons">
+      <input type="submit" name="apply" value="Apply changes" />
+    </div>
+  </form>
+</body>
+</html>
