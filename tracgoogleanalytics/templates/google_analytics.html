@@ -9,13 +9,13 @@
   document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
 <script type="text/javascript">
-  var pageTracker = _gat._getTracker("${ opt.uid }");
-  <py:if test="opt.tracking_domain_name"
-  >pageTracker._setDomainName("${ opt.tracking_domain_name }");</py:if>
-  pageTracker._initData();
-  pageTracker._trackPageview();
-<py:if test="opt.outbound_link_tracking">
   $(document).ready( function() {
+    var pageTracker = _gat._getTracker("${ opt.uid }");
+    <py:if test="opt.tracking_domain_name"
+    >pageTracker._setDomainName("${ opt.tracking_domain_name }");</py:if>
+    pageTracker._initData();
+    pageTracker._trackPageview();
+<py:if test="opt.outbound_link_tracking">
     //console.log('traversing links');
     $('a').each( function() {
       var url;
