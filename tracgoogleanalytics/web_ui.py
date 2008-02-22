@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # vim: sw=4 ts=4 fenc=utf-8
 # =============================================================================
-# $Id: web_ui.py 50 2008-02-22 17:12:30Z s0undt3ch $
+# $Id: web_ui.py 52 2008-02-22 18:08:58Z s0undt3ch $
 # =============================================================================
 #             $URL: http://devnull.ufsoft.org/svn/TracGoogleAnalytics/trunk/tracgoogleanalytics/web_ui.py $
-# $LastChangedDate: 2008-02-22 17:12:30 +0000 (Fri, 22 Feb 2008) $
-#             $Rev: 50 $
+# $LastChangedDate: 2008-02-22 18:08:58 +0000 (Fri, 22 Feb 2008) $
+#             $Rev: 52 $
 #   $LastChangedBy: s0undt3ch $
 # =============================================================================
 # Copyright (C) 2008 UfSoft.org - Pedro Algarvio <ufs@ufsoft.org>
@@ -27,6 +27,8 @@ class GoogleAnalyticsStreamFilter(Component):
 
     # ITemplateStreamFilter method
     def filter_stream(self, req, method, filename, stream, data):
+        if req.path_info.startswith('/admin'):
+            return stream
         options = self.get_options()
         if not options['uid']:
             return stream

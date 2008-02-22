@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # vim: sw=4 ts=4 fenc=utf-8
 # =============================================================================
-# $Id: admin.py 51 2008-02-22 17:52:10Z s0undt3ch $
+# $Id: admin.py 52 2008-02-22 18:08:58Z s0undt3ch $
 # =============================================================================
 #             $URL: http://devnull.ufsoft.org/svn/TracGoogleAnalytics/trunk/tracgoogleanalytics/admin.py $
-# $LastChangedDate: 2008-02-22 17:52:10 +0000 (Fri, 22 Feb 2008) $
-#             $Rev: 51 $
+# $LastChangedDate: 2008-02-22 18:08:58 +0000 (Fri, 22 Feb 2008) $
+#             $Rev: 52 $
 #   $LastChangedBy: s0undt3ch $
 # =============================================================================
 # Copyright (C) 2008 UfSoft.org - Pedro Algarvio <ufs@ufsoft.org>
@@ -75,5 +75,5 @@ class TracGoogleAnalyticsAdminPanel(Component):
             else:
                 value = self.config.get('google_analytics', option.name,
                                         option.default)
-                option.value = str(value).lower()
+                option.value = value
             self.options[option.name] = option
