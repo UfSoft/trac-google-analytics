@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # vim: sw=4 ts=4 fenc=utf-8
 # =============================================================================
-# $Id: admin.py 50 2008-02-22 17:12:30Z s0undt3ch $
+# $Id: admin.py 51 2008-02-22 17:52:10Z s0undt3ch $
 # =============================================================================
 #             $URL: http://devnull.ufsoft.org/svn/TracGoogleAnalytics/trunk/tracgoogleanalytics/admin.py $
-# $LastChangedDate: 2008-02-22 17:12:30 +0000 (Fri, 22 Feb 2008) $
-#             $Rev: 50 $
+# $LastChangedDate: 2008-02-22 17:52:10 +0000 (Fri, 22 Feb 2008) $
+#             $Rev: 51 $
 #   $LastChangedBy: s0undt3ch $
 # =============================================================================
 # Copyright (C) 2008 UfSoft.org - Pedro Algarvio <ufs@ufsoft.org>
@@ -20,6 +20,7 @@ from trac.config import Option, BoolOption, _TRUE_VALUES
 from pkg_resources import resource_filename
 
 class TracGoogleAnalyticsAdminPanel(Component):
+    config = None
     implements(ITemplateProvider, IAdminPanelProvider)
 
     def __init__(self):
@@ -76,6 +77,3 @@ class TracGoogleAnalyticsAdminPanel(Component):
                                         option.default)
                 option.value = str(value).lower()
             self.options[option.name] = option
-
-        for key, val in self.options.iteritems():
-            print key, val.__dict__
