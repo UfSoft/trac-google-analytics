@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 # vim: sw=4 ts=4 fenc=utf-8
 # =============================================================================
-# $Id: setup.py 50 2008-02-22 17:12:30Z s0undt3ch $
+# $Id: setup.py 70 2008-02-23 15:35:58Z s0undt3ch $
 # =============================================================================
 #             $URL: http://devnull.ufsoft.org/svn/TracGoogleAnalytics/trunk/setup.py $
-# $LastChangedDate: 2008-02-22 17:12:30 +0000 (Fri, 22 Feb 2008) $
-#             $Rev: 50 $
+# $LastChangedDate: 2008-02-23 15:35:58 +0000 (Sat, 23 Feb 2008) $
+#             $Rev: 70 $
 #   $LastChangedBy: s0undt3ch $
 # =============================================================================
 # Copyright (C) 2008 UfSoft.org - Pedro Algarvio <ufs@ufsoft.org>
@@ -15,16 +15,22 @@
 # =============================================================================
 
 import re
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(name="TracGoogleAnalytics",
-      version='0.1.0',
+      version='0.1.1',
       author="Pedro Algarvio",
       author_email='ufs@ufsoft.org',
       description='Trac plugin to enable your trac environment to be logged by Google Analytics',
       long_description=re.sub(r'(\.\.[\s]*[\w]*::[\s]*[\w+]*\n)+', r'::\n', open('README.txt').read()),
-      packages=find_packages(),
+      packages=['tracgoogleanalytics'],
+      package_data = {'tracgoogleanalytics': ['templates/*.html']},
+      include_package_data = True,
+      keywords = "trac plugin google analytics",
       entry_points = {
         'trac.plugins': [ 'tracgoogleanalytics = tracgoogleanalytics' ]
-      }
+      },
+      classifiers = [
+          'Framework :: Trac',
+      ]
 )

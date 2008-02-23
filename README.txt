@@ -55,5 +55,29 @@ There are other, more advanced configuration options:
    main domain here. For more info, please visit the previous link.
 
 
-.. _here: https://www.google.com/support/googleanalytics/bin/answer.py?answer=55524
+Download and Install
+--------------------
 
+The easiest way to install is using EasyInstall_:
+
+.. sourcecode:: sh
+
+  sudo easy_install TracGoogleAnalytics
+
+Or if you wish to install the current development version:
+
+.. sourcecode:: sh
+
+  sudo easy_install http://devnull.ufsoft.org/svn/TracGoogleAnalytics/trunk
+
+
+Bugs and/or New Features
+------------------------
+
+Please submit bugs of new features to::
+
+  http://devnull.ufsoft.org/
+
+
+.. _here: https://www.google.com/support/googleanalytics/bin/answer.py?answer=55524
+.. _EasyInstall: http://peak.telecommunity.com/DevCenter/EasyInstall
