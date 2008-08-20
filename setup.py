@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 # vim: sw=4 ts=4 fenc=utf-8
 # =============================================================================
-# $Id: setup.py 70 2008-02-23 15:35:58Z s0undt3ch $
+# $Id: setup.py 111 2008-08-20 12:45:22Z s0undt3ch $
 # =============================================================================
 #             $URL: http://devnull.ufsoft.org/svn/TracGoogleAnalytics/trunk/setup.py $
-# $LastChangedDate: 2008-02-23 15:35:58 +0000 (Sat, 23 Feb 2008) $
-#             $Rev: 70 $
+# $LastChangedDate: 2008-08-20 13:45:22 +0100 (Wed, 20 Aug 2008) $
+#             $Rev: 111 $
 #   $LastChangedBy: s0undt3ch $
 # =============================================================================
 # Copyright (C) 2008 UfSoft.org - Pedro Algarvio <ufs@ufsoft.org>
@@ -18,7 +18,7 @@ import re
 from setuptools import setup
 
 setup(name="TracGoogleAnalytics",
-      version='0.1.1',
+      version='0.1.2',
       author="Pedro Algarvio",
       author_email='ufs@ufsoft.org',
       description='Trac plugin to enable your trac environment to be logged by Google Analytics',

@@ -16,32 +16,32 @@
     pageTracker._initData();
     pageTracker._trackPageview();
   <py:if test="opt.outbound_link_tracking">
-    //console.log('traversing links');
+    <!--! // console.log('traversing links'); -->
     jQuery('a').each( function() {
       var url;
       if ( this.href.match("${base_url}") ) {
-        //console.log('Internal link', this.href);
+        <!--! //console.log('Internal link', this.href); -->
         if ( this.href.match(/\.(${ opt.extensions })$/) ) {
-          //console.log('Extension Listened', this.href);
+          <!--! //console.log('Extension Listened', this.href); -->
           url = this.pathname + this.search;
         };
       } else {
-        //console.log('External link', this.href);
+        <!--! //console.log('External link', this.href); -->
         var port = '';
         if ( this.port != '') port = ':'+this.port;
         url = '${ opt.google_external_path }' + this.hostname + port + this.pathname + this.search;
       };
-      //console.log(1, url)
+      <!--! //console.log(1, url) -->
       if ( url ) {
         if ( ! url.match('^\/attachment\/') ) {
           jQuery(this).click( function() {
-            //alert(url);
+            <!--! //alert(url); -->
             pageTracker._trackPageview(url);
           });
         };
       };
     });
-  });
   </py:if>
+  });
 </script>
 </html>
