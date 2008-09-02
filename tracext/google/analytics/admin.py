@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # vim: sw=4 ts=4 fenc=utf-8
 # =============================================================================
-# $Id: admin.py 52 2008-02-22 18:08:58Z s0undt3ch $
+# $Id: admin.py 123 2008-09-02 01:56:28Z s0undt3ch $
 # =============================================================================
-#             $URL: http://devnull.ufsoft.org/svn/TracGoogleAnalytics/trunk/tracgoogleanalytics/admin.py $
-# $LastChangedDate: 2008-02-22 18:08:58 +0000 (Fri, 22 Feb 2008) $
-#             $Rev: 52 $
+#             $URL: http://devnull.ufsoft.org/svn/TracGoogleAnalytics/trunk/tracext/google/analytics/admin.py $
+# $LastChangedDate: 2008-09-02 02:56:28 +0100 (Tue, 02 Sep 2008) $
+#             $Rev: 123 $
 #   $LastChangedBy: s0undt3ch $
 # =============================================================================
 # Copyright (C) 2008 UfSoft.org - Pedro Algarvio <ufs@ufsoft.org>
@@ -42,8 +42,8 @@ class TracGoogleAnalyticsAdminPanel(Component):
     # IAdminPanelProvider methods
     def get_admin_panels(self, req):
         if req.perm.has_permission('TRAC_ADMIN'):
-            yield ('google_analytics', 'Google Analytics', 'config',
-                   'Configuration')
+            yield ('google', 'Google', 'analytics',
+                   'Analytics')
 
     def render_admin_panel(self, req, cat, page, path_info):
         if req.method.lower() == 'post':

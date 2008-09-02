@@ -3,7 +3,7 @@
 # =============================================================================
 # $Id: config.py 50 2008-02-22 17:12:30Z s0undt3ch $
 # =============================================================================
-#             $URL: http://devnull.ufsoft.org/svn/TracGoogleAnalytics/trunk/tracgoogleanalytics/config.py $
+#             $URL: http://devnull.ufsoft.org/svn/TracGoogleAnalytics/trunk/tracext/google/analytics/config.py $
 # $LastChangedDate: 2008-02-22 17:12:30 +0000 (Fri, 22 Feb 2008) $
 #             $Rev: 50 $
 #   $LastChangedBy: s0undt3ch $

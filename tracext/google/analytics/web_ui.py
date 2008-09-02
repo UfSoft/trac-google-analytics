@@ -3,7 +3,7 @@
 # =============================================================================
 # $Id: web_ui.py 52 2008-02-22 18:08:58Z s0undt3ch $
 # =============================================================================
-#             $URL: http://devnull.ufsoft.org/svn/TracGoogleAnalytics/trunk/tracgoogleanalytics/web_ui.py $
+#             $URL: http://devnull.ufsoft.org/svn/TracGoogleAnalytics/trunk/tracext/google/analytics/web_ui.py $
 # $LastChangedDate: 2008-02-22 18:08:58 +0000 (Fri, 22 Feb 2008) $
 #             $Rev: 52 $
 #   $LastChangedBy: s0undt3ch $
