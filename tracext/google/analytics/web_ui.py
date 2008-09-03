@@ -13,7 +13,7 @@
 # Please view LICENSE for additional licensing information.
 # =============================================================================
 
-from trac.core import *
+from trac.core import Component, implements
 from trac.web.api import ITemplateStreamFilter
 from trac.config import Option
 from genshi.filters.transform import Transformer
@@ -22,7 +22,7 @@ from pkg_resources import resource_filename
 
 
 class GoogleAnalyticsStreamFilter(Component):
-    config = None
+    config = env = log = None
     implements(ITemplateStreamFilter)
 
     # ITemplateStreamFilter method
@@ -45,18 +45,18 @@ class GoogleAnalyticsStreamFilter(Component):
     def get_options(self):
         options = {}
         for option in [option for option in Option.registry.values()
-                       if option.section == 'google_analytics']:
+                       if option.section == 'google.analytics']:
             value = ''
             if option.name in ('admin_logging', 'outbound_link_tracking'):
-                value = self.config.getbool('google_analytics', option.name,
+                value = self.config.getbool('google.analytics', option.name,
                                             option.default)
                 option.value = value
             elif option.name == 'extensions':
-                value = self.config.get('google_analytics', option.name,
+                value = self.config.get('google.analytics', option.name,
                                         option.default)
                 option.value = '|'.join(val.strip() for val in value.split(','))
             else:
-                value = self.config.get('google_analytics', option.name,
+                value = self.config.get('google.analytics', option.name,
                                         option.default)
                 option.value = value
             options[option.name] = option.value

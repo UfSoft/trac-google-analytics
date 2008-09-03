@@ -1,59 +1,101 @@
 # -*- coding: utf-8 -*-
-# vim: sw=4 ts=4 fenc=utf-8
-# =============================================================================
-# $Id: __init__.py 123 2008-09-02 01:56:28Z s0undt3ch $
-# =============================================================================
-#             $URL: http://devnull.ufsoft.org/svn/TracGoogleAnalytics/trunk/tracext/google/analytics/__init__.py $
-# $LastChangedDate: 2008-09-02 02:56:28 +0100 (Tue, 02 Sep 2008) $
-#             $Rev: 123 $
-#   $LastChangedBy: s0undt3ch $
-# =============================================================================
-# Copyright (C) 2008 UfSoft.org - Pedro Algarvio <ufs@ufsoft.org>
-#
-# Please view LICENSE for additional licensing information.
-# =============================================================================
+# vim: sw=4 ts=4 fenc=utf-8 et
 
 from trac import __version__
 if [int(x.split('dev')[0]) for x in __version__.split('.')][1] < 11:
     raise ImportError("Trac < 0.11 not supported")
 
-## ==============================================================================
-## Trac Upgrade Code
-## ==============================================================================
-#from trac.core import Component, implements
-#from trac.env import IEnvironmentSetupParticipant
-#
-#class GoogleComponentSetup(Component):
-#    env = config = log = None # make pylink happy
-#    implements(IEnvironmentSetupParticipant)
-#
-#    def environment_created(self):
-#        "Nothing to do when an environment is created"""
-#
-#    def environment_needs_upgrade(self, db):
-#        cursor = db.cursor()
-#        cursor.execute('SELECT value FROM system WHERE name=%s',
-#                       ('adspanel.code',))
-#        if cursor.fetchone():
-#            self.log.debug('Found old AdsPanel code in database')
-#            return True
-#        self.log.debug('Did not find old AdsPanel code in database')
-#        return False
-#
-#    def upgrade_environment(self, db):
-#        cursor = db.cursor()
-#        cursor.execute('SELECT value FROM system WHERE name=%s',
-#                       ('adspanel.code',))
-#        code = cursor.fetchone()
-#        self.log.debug('Upgrading Ads HTML Code from AdsPanel to Adsense4Trac')
-#        cursor.execute('INSERT INTO system (name,value) VALUES (%s,%s)',
-#                       ('adsense.ads_html', code[0]))
-#        cursor.execute('DELETE from system where name=%s', ('adspanel.code',))
-#        db.commit()
-#        self.log.debug("Upgrading configuration from AdsPanel to Adsense4Trac "
-#                       "if needed")
-#        for option, value in self.config.options('adspanel'):
-#            if self.config.has_option('adsense', option):
-#                self.config.set('adsense', option, value)
-#            self.config.remove('adspanel', option)
-#        self.config.save()
+import pkg_resources
+from trac.config import Option, BoolOption
+from trac.core import Component, implements
+from trac.env import IEnvironmentSetupParticipant
+from trac.web.chrome import ITemplateProvider
+
+# ==============================================================================
+# Google Analytics Configuration
+# ==============================================================================
+class GoogleAnalyticsConfig(Component):
+    uid = Option(
+        'google.analytics', 'uid', None,
+        """Google Analytics' UID.
+        The UID is needed for Google Analytics to log your website stats.
+        Your UID can be found by looking in the JavaScript Google Analytics
+        gives you to put on your page. Look for your UID in between
+        `var pageTracker = _gat._getTracker("UA-111111-11");` in the javascript.
+        In this example you would put UA-11111-1 in the UID box.""")
+    admin_logging = BoolOption(
+        'google.analytics', 'admin_logging', False,
+        """Disabling this option will prevent all logged in admins from showing
+        up on your Google Analytics reports.""")
+    outbound_link_tracking = BoolOption(
+        'google.analytics', 'outbound_link_tracking', True,
+        """Disabling this option will turn off the tracking of outbound links.
+        It's recommended not to disable this option unless you're a privacy
+        advocate (now why would you be using Google Analytics in the first
+        place?) or it's causing some kind of weird issue.""")
+    google_external_path = Option(
+        'google.analytics', 'google_external_path', '/external/',
+        """This will be the path shown on Google Analytics
+        regarding external links. Consider the following link:
+          http://trac.edgewall.org/"
+        The above link will be shown as for example:
+          /external/trac.edgewall.org/
+        This way you will be able to track outgoing links.
+        Outbound link tracking must be enabled for external links to be
+        tracked.""")
+    extensions = Option(
+        'google.analytics', 'extensions', 'zip,tar,tar.gz,tar.bzip,egg',
+        """Enter any extensions of files you would like to be tracked as a
+        download. For example to track all MP3s and PDFs enter:
+            mp3,pdf
+        Outbound link tracking must be enabled for downloads to be tracked.""")
+    tracking_domain_name = Option(
+        'google.analytics', 'tracking_domain_name', None,
+        """If you're tracking multiple subdomains with the same Google Analytics
+        profile, like what's talked about in:
+            https://www.google.com/support/googleanalytics/bin/answer.py?answer=55524
+        enter your main domain here. For more info, please visit the previous
+        link.""")
+# ==============================================================================
+# Google Analytics Resources
+# ==============================================================================
+class GoogleAnalyticsResources(Component):
+    implements(ITemplateProvider)
+    # ITemplateProvider methods
+    def get_htdocs_dirs(self):
+        """Return the absolute path of a directory containing additional
+        static resources (such as images, style sheets, etc).
+        """
+        yield 'googleanalytics', pkg_resources.resource_filename(__name__,
+                                                                 'htdocs')
+
+    def get_templates_dirs(self):
+        """Return the absolute path of the directory containing the provided
+        Genshi templates.
+        """
+        yield pkg_resources.resource_filename(__name__, 'templates')
+
+# ==============================================================================
+# Trac Upgrade Code
+# ==============================================================================
+class GoogleAnalyticsSetup(Component):
+    env = config = log = None # make pylink happy
+    implements(IEnvironmentSetupParticipant)
+
+    def environment_created(self):
+        "Nothing to do when an environment is created"""
+
+    def environment_needs_upgrade(self, db):
+        return 'google_analytics' in self.config
+
+    def upgrade_environment(self, db):
+        # Although we're only migrating configuration stuff and there's no
+        # database queries involved, which could be done on other places,
+        # I'm placing the migration code here so that it only happens once
+        # and the admin notices that a migration was done.
+        self.log.debug('Migrating Google Analytics configuration')
+        for option, value in self.config.options('google_analytics'):
+            if self.config.has_option('google.analytics', option):
+                self.config.set('google.analytics', option, value)
+            self.config.remove('google_analytics', option)
+        self.config.save()

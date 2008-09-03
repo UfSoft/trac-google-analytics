@@ -21,18 +21,20 @@ setup(name="TracGoogleAnalytics",
       version='0.1.2',
       author="Pedro Algarvio",
       author_email='ufs@ufsoft.org',
-      description='Trac plugin to enable your trac environment to be logged by Google Analytics',
-      long_description=re.sub(r'(\.\.[\s]*[\w]*::[\s]*[\w+]*\n)+', r'::\n', open('README.txt').read()),
+      description='Trac plugin to enable your trac environment to be logged '
+                  'by Google Analytics',
+      long_description=re.sub(r'(\.\.[\s]*[\w]*::[\s]*[\w+]*\n)+', r'::\n',
+                              open('README.txt').read()),
       packages=['tracext', 'tracext.google', 'tracext.google.analytics'],
       namespace_packages=['tracext', 'tracext.google'],
-      package_data = {'tracext.google.analytics': ['templates/*.html']},
+      package_data = {'tracext.google.analytics': ['templates/*.html',
+                                                   'htdocs/*.css']},
       include_package_data = True,
       keywords = "trac plugin google analytics",
       entry_points = """
       [trac.plugins]
         tracext.google.analytics = tracext.google.analytics
         tracext.google.analytics.admin = tracext.google.analytics.admin
-        tracext.google.analytics.config = tracext.google.analytics.config
         tracext.google.analytics.web_ui = tracext.google.analytics.web_ui
       """,
       classifiers = [
