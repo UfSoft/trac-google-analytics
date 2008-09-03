@@ -73,5 +73,19 @@ Please submit bugs of new features to::
   http://google.ufsoft.org/
 
 
+Source Code
+-----------
+
+If you wish to be on the bleeding edge and get the latest available code:
+
+.. sourcecode:: ini
+
+  hg clone http://google.ufsoft.org/hg/analytics-dev/ TracGoogleAds
+
+
+**Note**: For up-to-date documentation please visit TracGoogleAnalytics_'s site.
+
+
 .. _here: https://www.google.com/support/googleanalytics/bin/answer.py?answer=55524
 .. _EasyInstall: http://peak.telecommunity.com/DevCenter/EasyInstall
+.. _TracGoogleAnalytics: http://google.ufsoft.org/wiki/TracGoogleAnalytics
