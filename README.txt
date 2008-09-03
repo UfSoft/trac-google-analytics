@@ -16,14 +16,14 @@ Download and Install
 
 The easiest way to install is using EasyInstall_:
 
-.. code-block:: sh
+.. sourcecode:: sh
 
   sudo easy_install TracGoogleAnalytics
 
 Then, to enable the plugin add to the ``[components]`` section in your
 ``trac.ini``:
 
-.. code-block:: ini
+.. sourcecode:: ini
 
   [components]
   tracext.google.analytics.* = enabled
@@ -82,7 +82,7 @@ Source Code
 
 If you wish to be on the bleeding edge and get the latest available code:
 
-.. code-block:: ini
+.. sourcecode:: ini
 
   hg clone http://google.ufsoft.org/hg/analytics/ TracGoogleAds
 
