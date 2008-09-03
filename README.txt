@@ -1,15 +1,29 @@
 Trac Google Analytics Plugin
 ============================
 
-This plugin will enable your trac environment to be logged by Google Analytics.
+Previously known as `Google Analytics Plugin`_, this plugin will enable your
+trac environment to be logged by Google Analytics.
 
 It ads the necessary javascript code to log your environment, plus, it also
 logs the downloads of regular filenames which end with a specific extension;
 these extensions are defined by you; and also external links.
 
-To enable the plugin add to the ``[components]`` section in your ``trac.ini``:
+*Plugin has been renamed and package hierarchy has changed to join*
+`other trac plugins`_ *that addressed* Google_ *services.*
 
-.. sourcecode:: ini
+Download and Install
+--------------------
+
+The easiest way to install is using EasyInstall_:
+
+.. code-block:: sh
+
+  sudo easy_install TracGoogleAnalytics
+
+Then, to enable the plugin add to the ``[components]`` section in your
+``trac.ini``:
+
+.. code-block:: ini
 
   [components]
   tracext.google.analytics.* = enabled
@@ -55,16 +69,6 @@ There are other, more advanced configuration options:
    main domain here. For more info, please visit the previous link.
 
 
-Download and Install
---------------------
-
-The easiest way to install is using EasyInstall_:
-
-.. sourcecode:: sh
-
-  sudo easy_install TracGoogleAnalytics
-
-
 Bugs and/or New Features
 ------------------------
 
@@ -78,7 +82,7 @@ Source Code
 
 If you wish to be on the bleeding edge and get the latest available code:
 
-.. sourcecode:: ini
+.. code-block:: ini
 
   hg clone http://google.ufsoft.org/hg/analytics/ TracGoogleAds
 
@@ -88,4 +92,7 @@ If you wish to be on the bleeding edge and get the latest available code:
 
 .. _here: https://www.google.com/support/googleanalytics/bin/answer.py?answer=55524
 .. _EasyInstall: http://peak.telecommunity.com/DevCenter/EasyInstall
+.. _Google: http://www.google.com
 .. _TracGoogleAnalytics: http://google.ufsoft.org/wiki/TracGoogleAnalytics
+.. _Google Analytics Plugin: http://devnull.ufsoft.org/wiki/TracGoogleAnalytics
+.. _other trac plugins: http://google.ufsoft.org/
