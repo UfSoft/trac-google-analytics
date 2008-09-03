@@ -80,7 +80,7 @@ If you wish to be on the bleeding edge and get the latest available code:
 
 .. sourcecode:: ini
 
-  hg clone http://google.ufsoft.org/hg/analytics-dev/ TracGoogleAds
+  hg clone http://google.ufsoft.org/hg/analytics/ TracGoogleAds
 
 
 **Note**: For up-to-date documentation please visit TracGoogleAnalytics_'s site.
