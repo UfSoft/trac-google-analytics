@@ -1,9 +1,19 @@
 # -*- coding: utf-8 -*-
 # vim: sw=4 ts=4 fenc=utf-8 et
+# ==============================================================================
+# Copyright © 2008 UfSoft.org - Pedro Algarvio <ufs@ufsoft.org>
+#
+# Please view LICENSE for additional licensing information.
+# ==============================================================================
 
-from trac import __version__
-if [int(x.split('dev')[0]) for x in __version__.split('.')][1] < 11:
-    raise ImportError("Trac < 0.11 not supported")
+__version__     = '0.2.0'
+__author__      = 'Pedro Algarvio'
+__email__       = 'ufs@ufsoft.org'
+__package__     = 'TracGoogleAnalytics'
+__license__     = 'BSD'
+__url__         = 'http://google.ufsoft.org'
+__summary__     = 'Trac plugin to enable your trac environment to be logged' + \
+                  ' by Google Analytics'
 
 import pkg_resources
 from trac.config import Option, BoolOption
@@ -56,6 +66,7 @@ class GoogleAnalyticsConfig(Component):
             https://www.google.com/support/googleanalytics/bin/answer.py?answer=55524
         enter your main domain here. For more info, please visit the previous
         link.""")
+
 # ==============================================================================
 # Google Analytics Resources
 # ==============================================================================
@@ -76,7 +87,7 @@ class GoogleAnalyticsResources(Component):
         yield pkg_resources.resource_filename(__name__, 'templates')
 
 # ==============================================================================
-# Trac Upgrade Code
+# Upgrade Code
 # ==============================================================================
 class GoogleAnalyticsSetup(Component):
     env = config = log = None # make pylink happy

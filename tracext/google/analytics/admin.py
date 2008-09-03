@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 # vim: sw=4 ts=4 fenc=utf-8 et
+# ==============================================================================
+# Copyright © 2008 UfSoft.org - Pedro Algarvio <ufs@ufsoft.org>
+#
+# Please view LICENSE for additional licensing information.
+# ==============================================================================
 
-from trac.core import Component, implements
-from trac.web.chrome import add_stylesheet
 from trac.admin import IAdminPanelProvider
 from trac.config import Option, _TRUE_VALUES
+from trac.core import Component, implements
+from trac.web.chrome import add_stylesheet
 
 class TracGoogleAnalyticsAdminPanel(Component):
     config = env = log = None
@@ -39,7 +44,6 @@ class TracGoogleAnalyticsAdminPanel(Component):
     def update_config(self):
         for option in [option for option in Option.registry.values()
                        if option.section == 'google.analytics']:
-            value = ''
             if option.name in ('admin_logging', 'outbound_link_tracking'):
                 value = self.config.getbool('google.analytics', option.name,
                                             option.default)
