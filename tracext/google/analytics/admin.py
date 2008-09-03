@@ -11,7 +11,7 @@ from trac.config import Option, _TRUE_VALUES
 from trac.core import Component, implements
 from trac.web.chrome import add_stylesheet
 
-class TracGoogleAnalyticsAdminPanel(Component):
+class GoogleAnalyticsAdmin(Component):
     config = env = log = None
     options = {}
     implements(IAdminPanelProvider)

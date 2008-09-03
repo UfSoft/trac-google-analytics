@@ -12,7 +12,7 @@ To enable the plugin add to the ``[components]`` section in your ``trac.ini``:
 .. sourcecode:: ini
 
   [components]
-  tracgoogleanalytics.* = enabled
+  tracext.google.analytics.* = enabled
 
 
 Configuration
@@ -64,19 +64,13 @@ The easiest way to install is using EasyInstall_:
 
   sudo easy_install TracGoogleAnalytics
 
-Or if you wish to install the current development version:
-
-.. sourcecode:: sh
-
-  sudo easy_install http://devnull.ufsoft.org/svn/TracGoogleAnalytics/trunk
-
 
 Bugs and/or New Features
 ------------------------
 
 Please submit bugs of new features to::
 
-  http://devnull.ufsoft.org/
+  http://google.ufsoft.org/
 
 
 .. _here: https://www.google.com/support/googleanalytics/bin/answer.py?answer=55524
