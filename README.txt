@@ -9,7 +9,7 @@ logs the downloads of regular filenames which end with a specific extension;
 these extensions are defined by you; and also external links.
 
 *Plugin has been renamed and package hierarchy has changed to join*
-`other trac plugins`_ *that addressed* Google_ *services.*
+`other trac plugins`_ *that addressed* Google_ *services*.
 
 Download and Install
 --------------------
@@ -19,6 +19,7 @@ The easiest way to install is using EasyInstall_:
 .. sourcecode:: sh
 
   sudo easy_install TracGoogleAnalytics
+
 
 Then, to enable the plugin add to the ``[components]`` section in your
 ``trac.ini``:
@@ -82,7 +83,7 @@ Source Code
 
 If you wish to be on the bleeding edge and get the latest available code:
 
-.. sourcecode:: ini
+.. sourcecode:: sh
 
   hg clone http://google.ufsoft.org/hg/analytics/ TracGoogleAds
 
