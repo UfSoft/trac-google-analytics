@@ -38,6 +38,13 @@
         <p class="help">Disabling this option will prevent all logged in
           <tt><strong>TRAC_ADMIN</strong></tt>'s from showing up on your Google
           Analytics reports.</p><br/>
+
+        <label for="authenticated_logging">Authenticated Users Logging:</label>
+        <input type="checkbox" name="authenticated_logging" value="yes" checked="${
+          ga.authenticated_logging.value and 'checked' or None}"/>
+        <p class="help">Disabling this option will prevent all
+        <strong>authenticated</strong> users from showing up on your Google
+        Analytics reports.</p><br/>
       </fieldset>
 
       <fieldset>

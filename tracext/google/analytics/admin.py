@@ -28,6 +28,9 @@ class GoogleAnalyticsAdmin(Component):
                             req.args.get('uid'))
             self.config.set('google.analytics', 'admin_logging',
                             req.args.get('admin_logging') in _TRUE_VALUES)
+            self.config.set('google.analytics', 'authenticated_logging',
+                            req.args.get('authenticated_logging') in
+                            _TRUE_VALUES)
             self.config.set('google.analytics', 'outbound_link_tracking',
                             req.args.get('outbound_link_tracking') in \
                             _TRUE_VALUES)
@@ -44,7 +47,8 @@ class GoogleAnalyticsAdmin(Component):
     def update_config(self):
         for option in [option for option in Option.registry.values()
                        if option.section == 'google.analytics']:
-            if option.name in ('admin_logging', 'outbound_link_tracking'):
+            if option.name in ('admin_logging', 'authenticated_logging',
+                               'outbound_link_tracking'):
                 value = self.config.getbool('google.analytics', option.name,
                                             option.default)
                 option.value = value
