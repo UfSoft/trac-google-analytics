@@ -21,11 +21,19 @@ class GoogleAnalyticsStreamFilter(Component):
     def filter_stream(self, req, method, filename, stream, data):
         if req.path_info.startswith('/admin'):
             return stream
+
         options = self.get_options()
         if not options.get('uid'):
+            self.log.debug('Plugin not configured, returning stream')
             return stream
-        if ('TRAC_ADMIN' in req.perm) and (not options['admin_logging']):
+        elif ('TRAC_ADMIN' in req.perm) and (not options['admin_logging']):
+            self.log.debug("Not tracking TRAC_ADMIN's, returning stream")
             return stream
+        elif (req.authname and req.authname != "anonymous") \
+                                    and (not options['authenticated_logging']):
+            self.log.debug("Not tracking authenticated users, returning stream")
+            return stream
+
         template = Chrome(self.env).load_template('google_analytics.html')
         data = template.generate(
             admin= 'TRAC_ADMIN' in req.perm,
@@ -37,7 +45,8 @@ class GoogleAnalyticsStreamFilter(Component):
         options = {}
         for option in [option for option in Option.registry.values()
                        if option.section == 'google.analytics']:
-            if option.name in ('admin_logging', 'outbound_link_tracking'):
+            if option.name in ('admin_logging', 'authenticated_logging',
+                               'outbound_link_tracking'):
                 value = self.config.getbool('google.analytics', option.name,
                                             option.default)
                 option.value = value
