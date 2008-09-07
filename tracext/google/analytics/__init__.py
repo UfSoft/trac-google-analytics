@@ -37,6 +37,10 @@ class GoogleAnalyticsConfig(Component):
         'google.analytics', 'admin_logging', False,
         """Disabling this option will prevent all logged in admins from showing
         up on your Google Analytics reports.""")
+    authenticated_logging = BoolOption(
+        'google.analytics', 'authenticated_logging', True,
+        """Disabling this option will prevent all authenticated users from
+        showing up on your Google Analytics reports.""")
     outbound_link_tracking = BoolOption(
         'google.analytics', 'outbound_link_tracking', True,
         """Disabling this option will turn off the tracking of outbound links.

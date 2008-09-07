@@ -46,6 +46,8 @@ The necessary configuration is:
 There are other, more advanced configuration options:
  * **admin_logging**: Disabling this option will prevent all logged in
    ``TRAC_ADMIN``'s from showing up on your Google Analytics reports.
+ * **authenticated_logging**: Disabling this option will prevent all
+   authenticated users from showing up on your Google Analytics reports.
  * **outbound_link_tracking**: Disabling this option will turn off the
    tracking of outbound links.
    It's recommended not to disable this option unless you're a privacy
@@ -85,7 +87,7 @@ If you wish to be on the bleeding edge and get the latest available code:
 
 .. sourcecode:: sh
 
-  hg clone http://google.ufsoft.org/hg/analytics/ TracGoogleAds
+  hg clone http://google.ufsoft.org/hg/analytics/ TracGoogleAnalytics
 
 
 **Note**: For up-to-date documentation please visit TracGoogleAnalytics_'s site.
