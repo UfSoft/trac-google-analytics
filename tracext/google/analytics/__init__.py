@@ -6,7 +6,7 @@
 # Please view LICENSE for additional licensing information.
 # ==============================================================================
 
-__version__     = '0.2.0'
+__version__     = '0.2.1'
 __author__      = 'Pedro Algarvio'
 __email__       = 'ufs@ufsoft.org'
 __package__     = 'TracGoogleAnalytics'
